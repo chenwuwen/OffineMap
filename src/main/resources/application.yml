@@ -1,0 +1,42 @@
+server:
+    port: 9090
+
+logging:
+    level:
+        tk.mybatis: TRACE
+
+druid:
+    url: jdbc:mysql://127.0.0.1:3306/mapcache
+    username: root
+    password: root
+    initial-size: 1
+    min-idle: 1
+    max-active: 20
+    test-on-borrow: true
+
+spring:
+    datasource:
+      url: jdbc:mysql://127.0.0.1:3306/mapcache
+      username: root
+      password: root
+    mvc:
+        view:
+            prefix: /page/
+            suffix: .html
+
+
+mybatis:
+    type-aliases-package: cn.kanyun.offinemap.model
+    mapper-locations: classpath:mapper/*.xml
+
+mapper:
+    mappers:
+         - cn.kanyun.offinemap.util.MyMapper
+    not-empty: false
+    identity: MYSQL
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql

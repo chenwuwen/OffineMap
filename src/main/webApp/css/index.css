@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+
+}
+
+#map {
+    height: 500px;
+    width: 80%;
+    position: absolute;
+    margin-left: 15%;
+}
+
+.slide-bar {
+    width: 10%;
+    background: #eee;
+    height: 100%;
+    position: absolute;
+
+}
+
+li {
+    list-style-type: none;
+}
