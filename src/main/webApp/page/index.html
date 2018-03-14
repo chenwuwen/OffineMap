@@ -14,7 +14,10 @@
     <script src="../lib/bootstrap-select-1.12.4/js/bootstrap-select.js"></script>
     <script src="../lib/bootstrap-select-1.12.4/js/i18n/defaults-zh_CN.js"></script>
     <script src="../lib/leaflet/leaflet.js"></script>
+    <script src="../lib/jquery-koala/jquery.koala.js"></script>
     <script src="../js/search.js"></script>
+    <script src="../js/map.js"></script>
+    <script src="../js/icon.js"></script>
 
 </head>
 <body>
@@ -27,13 +30,11 @@
 
 
 <div class="row">
-    <div class="col-xs-3 select">
+    <div class="col-xs-5 select">
         <div class="form-group">
-            <select id="queryDevice" name="name" class="selectpicker" data-live-search="true">
+            <select id="queryDevice" name="name" class="selectpicker" data-live-search="true" data-max-options="10"
+                    onchange="selectOnchang(this)">
 
-                <option>Mustard</option>
-                <option>Ketchup</option>
-                <option>Relish</option>
 
             </select>
         </div>
@@ -47,32 +48,28 @@
 
 <script type="text/javascript">
 
+    var map
+    var osmUrl = 'http://localhost/788865972/{z}/{x}/{y}.png';
+    var osmAttrib = '<b style="color:#dddddd">高德地图</b>';
+    var osm;
     $(function () {
 
-        $("")
+        osm = L.tileLayer(osmUrl, {
+            minZoom: 5,
+            maxZoom: 15,
+            attribution: osmAttrib
 
-        var osmUrl = 'http://localhost/788865972/{z}/{x}/{y}.png',
-            osmAttrib = '<b style="color:#dddddd">看云离线地图</b>',
-            osm = L.tileLayer(osmUrl, {
-                minZoom: 5,
-                maxZoom: 15,
-                attribution: osmAttrib
+        });
 
-            });
-
-        var map = L.map('map')
-            .setView([40.1705, 116.4331], 9)
+//        初始化Map,之后直接使用map对象
+        map = L.map('map')
+            .setView([39.908419, 116.397743], 10)
             .addLayer(osm);
 
         L.marker([40.000268, 116.613693]).addTo(map)
-            .bindPopup("<div class='imgTip'></div>").openPopup();
+            .bindPopup("<div class=''></div>").openPopup();
 
-//         圆圈
-//         L.circle([39.966859,116.157417], 5000, {
-//             color: 'red',
-//             fillColor: '#f03',
-//             fillOpacity: 0.5
-//         }).addTo(map).bindPopup("I am a circle.");
+        initMark()
 
         var popup = L.popup();
 

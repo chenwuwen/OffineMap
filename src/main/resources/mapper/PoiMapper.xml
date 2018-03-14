@@ -29,7 +29,7 @@
             and (name like concat(concat('%',#{name,jdbcType=VARCHAR}),'%') or address like
             concat(concat('%',#{name,jdbcType=VARCHAR}),'%'))
         </if>
-
+        limit 0,10
     </select>
 
 

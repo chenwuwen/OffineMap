@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jquery koala</title>
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.koala.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+  <div id="main">
+    <h1>jquery koala</h1>
+    <h4>Koala is a jQuery plugin that capture user's continuous input and execute callbacks of keyboard events delayed.</h4>
+    <p>bind key events with koala: <input class="koala" type="text" /></p>
+    <p>normal bind key events: <input class="normal" type="text" /></p>
+    <div id="future">
+      <input type="button" value="add a text field" id="add" />
+    </div>
+  </div>
+  <div id="logviewer" style="position:absolute; width: 320px; right: 100px; top: 0">
+    <h3>logger view</h3>
+    <ul id="log-box" style="border: 1px solid #333; width: 300px; height: 400px;overflow: scroll;list-style: none; padding: 5px">
+    </ul>
+    <input type="button" value="clear" id="clear" />
+  </div>
+</body>
+</html>
