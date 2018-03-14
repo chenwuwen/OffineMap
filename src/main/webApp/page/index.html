@@ -5,8 +5,16 @@
     <title>Title</title>
     <link rel="stylesheet" href="../lib/leaflet/leaflet.css"/>
     <link rel="stylesheet" href="../css/index.css"/>
+    <link rel="stylesheet" href="../lib/bootstrap-3.3.7/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../lib/bootstrap-select-1.12.4/css/bootstrap-select.css"/>
+    <link rel="stylesheet" href="../css/index.css"/>
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../lib/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <script src="../lib/bootstrap-select-1.12.4/js/bootstrap-select.js"></script>
+    <script src="../lib/bootstrap-select-1.12.4/js/i18n/defaults-zh_CN.js"></script>
     <script src="../lib/leaflet/leaflet.js"></script>
-    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../js/search.js"></script>
 
 </head>
 <body>
@@ -16,11 +24,32 @@
         <li>导入数据</li>
     </ul>
 </div>
-<div id="map"></div>
+
+
+<div class="row">
+    <div class="col-xs-3 select">
+        <div class="form-group">
+            <select id="queryDevice" name="name" class="selectpicker" data-live-search="true">
+
+                <option>Mustard</option>
+                <option>Ketchup</option>
+                <option>Relish</option>
+
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="map">
+
+
+</div>
 
 <script type="text/javascript">
 
     $(function () {
+
+        $("")
 
         var osmUrl = 'http://localhost/788865972/{z}/{x}/{y}.png',
             osmAttrib = '<b style="color:#dddddd">看云离线地图</b>',
@@ -32,17 +61,18 @@
             });
 
         var map = L.map('map')
-         .setView([40.1705, 116.4331], 9)
+            .setView([40.1705, 116.4331], 9)
             .addLayer(osm);
 
-         L.marker([40.000268,116.613693]).addTo(map)
-             .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+        L.marker([40.000268, 116.613693]).addTo(map)
+            .bindPopup("<div class='imgTip'></div>").openPopup();
 
-         L.circle([39.966859,116.157417], 5000, {
-             color: 'red',
-             fillColor: '#f03',
-             fillOpacity: 0.5
-         }).addTo(map).bindPopup("I am a circle.");
+//         圆圈
+//         L.circle([39.966859,116.157417], 5000, {
+//             color: 'red',
+//             fillColor: '#f03',
+//             fillOpacity: 0.5
+//         }).addTo(map).bindPopup("I am a circle.");
 
         var popup = L.popup();
 

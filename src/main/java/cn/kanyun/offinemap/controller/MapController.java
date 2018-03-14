@@ -24,10 +24,13 @@
 
 package cn.kanyun.offinemap.controller;
 
+import cn.kanyun.offinemap.model.Poi;
 import cn.kanyun.offinemap.service.PoiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author liuzh
@@ -41,39 +44,25 @@ public class MapController {
     private PoiService poiService;
 
 
-//    @RequestMapping
-//    public PageInfo<City> getAll(City city) {
-//        List<City> countryList = cityService.getAll(city);
-//        return new PageInfo<City>(countryList);
-//    }
+
+    @RequestMapping("/getAllMap")
+    public List<Poi> getAllMap(Poi poi) {
+        List<Poi> pois = poiService.getAll(poi);
+        return pois;
+    }
+
+    @RequestMapping("/getMapByName")
+    public List<Poi> getMapByName(String name) {
+        List<Poi> pois = poiService.getMapByName(name.trim());
+        return pois;
+    }
+
+
 //
 //    @RequestMapping(value = "/add")
 //    public City add() {
 //        return new City();
 //    }
 //
-//    @RequestMapping(value = "/view/{id}")
-//    public City view(@PathVariable Integer id) {
-//        ModelAndView result = new ModelAndView();
-//        City city = cityService.getById(id);
-//        return city;
-//    }
-//
-//    @RequestMapping(value = "/delete/{id}")
-//    public ModelMap delete(@PathVariable Integer id) {
-//        ModelMap result = new ModelMap();
-//        cityService.deleteById(id);
-//        result.put("msg", "删除成功!");
-//        return result;
-//    }
-//
-//    @RequestMapping(value = "/save", method = RequestMethod.POST)
-//    public ModelMap save(City city) {
-//        ModelMap result = new ModelMap();
-//        String msg = city.getId() == null ? "新增成功!" : "更新成功!";
-//        cityService.save(city);
-//        result.put("city", city);
-//        result.put("msg", msg);
-//        return result;
-//    }
+
 }

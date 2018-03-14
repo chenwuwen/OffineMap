@@ -12,4 +12,6 @@ public interface PoiService extends BaseService<Poi, Long> {
     List<Poi> getAll(Poi poi);
 
     List<Poi> getByCondition(Poi poi);
+
+    List<Poi> getMapByName(String name);
 }

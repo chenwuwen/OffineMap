@@ -34,4 +34,10 @@ public class PoiServiceImpl extends BaseServiceImpl<Poi, Long> implements PoiSer
         }
         return poiMapper.select(poi);
     }
+
+    @Override
+    public List<Poi> getMapByName(String name) {
+        List<Poi> list = poiMapper.getMapByName(name);
+        return list;
+    }
 }

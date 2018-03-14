@@ -1,19 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.kanyun.offinemap.mapper.PoiMapper">
-  <resultMap id="BaseResultMap" type="cn.kanyun.offinemap.model.Poi">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="tel" jdbcType="VARCHAR" property="tel" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="lng" jdbcType="VARCHAR" property="lng" />
-    <result column="lat" jdbcType="VARCHAR" property="lat" />
-    <result column="insert_date" jdbcType="TIMESTAMP" property="insertDate" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="cn.kanyun.offinemap.model.Poi">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="city_code" jdbcType="VARCHAR" property="cityCode"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="tel" jdbcType="VARCHAR" property="tel"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="lng" jdbcType="VARCHAR" property="lng"/>
+        <result column="lat" jdbcType="VARCHAR" property="lat"/>
+        <result column="insert_date" jdbcType="TIMESTAMP" property="insertDate"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, city_code, name, address, tel, type, lng, lat, insert_date
+  </sql>
+
+
+    <select id="getMapByName" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM poi where 1=1
+        <if test="name != null and name !=''">
+            and (name like concat(concat('%',#{name,jdbcType=VARCHAR}),'%') or address like
+            concat(concat('%',#{name,jdbcType=VARCHAR}),'%'))
+        </if>
+
+    </select>
+
 
 </mapper>
