@@ -52,6 +52,7 @@
     var osmUrl = 'http://localhost/788865972/{z}/{x}/{y}.png';
     var osmAttrib = '<b style="color:#dddddd">高德地图</b>';
     var osm;
+    var popup;
     $(function () {
 
         osm = L.tileLayer(osmUrl, {
@@ -63,23 +64,13 @@
 
 //        初始化Map,之后直接使用map对象
         map = L.map('map')
-            .setView([39.908419, 116.397743], 10)
+        //初始化设置中心点，建议以你下载地图的范围的中心点，比如你下载的是北京的地图，那么中心点就可以设置为天安门,后面的值表示初始化显示zomm的级别也就是初始化的时候你想看到的地图的范围的大小，值越大，地图展示的范围越小
+            .setView([39.90921,116.402893], 10)
             .addLayer(osm);
-
-        L.marker([40.000268, 116.613693]).addTo(map)
-            .bindPopup("<div class=''></div>").openPopup();
-
+//地图初始化标记（其实就是随便打几个点，具体根据你后台返回的数据来决定）
         initMark()
-
-        var popup = L.popup();
-
-        function onMapClick(e) {
-            popup
-                .setLatLng(e.latlng)
-                .setContent("当前点击位置的纬度,经度 " + e.latlng.toString())
-                .openOn(map);
-        }
-
+        popup = L.popup();
+//        在地图上点击调用onMapClick方法
         map.on('click', onMapClick);
 
 

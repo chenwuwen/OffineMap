@@ -58,6 +58,10 @@ function getArealList(name) {//获取位置列表
 
 }
 
+/**
+ * bootstrap-select 中选择事件
+ * @param obj
+ */
 function selectOnchang(obj) {
     console.log("经度，纬度是：" + obj.options[obj.selectedIndex].value)
     console.log(obj)
@@ -70,7 +74,9 @@ function selectOnchang(obj) {
     markPositionAndSetCenter(lat, lng, pitchName)
 }
 
-
+/**
+ * 获取一些poi地址用来在地图上标记
+ */
 function initMark() {
     $.ajax({
         url: "/map/getAllMap",
@@ -86,4 +92,15 @@ function initMark() {
 
         }
     })
+}
+
+/**
+ * 地图上的点击事件
+ * @param e
+ */
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("当前点击位置的纬度,经度 " + e.latlng.toString())
+        .openOn(map);
 }
